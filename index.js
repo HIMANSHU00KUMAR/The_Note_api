@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors'; // Import the cors middleware
 import dotenv from 'dotenv';
 import noteRoutes from './routes/notes.js';
-
+import { getNotes } from './controllers/notes.js';
 dotenv.config();
 
 const app = express();
@@ -22,6 +22,9 @@ mongoose.connect(MONGODB_URI)
   .catch(err => console.error(err));
 
 app.use('/api/notes', noteRoutes);
+
+app.get('/api/notes/all',getNotes)
+
 app.get('/hello', (req, res)=>{
   res.status(200).json("Welcome to notes api")
 })
