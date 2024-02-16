@@ -22,5 +22,8 @@ mongoose.connect(MONGODB_URI)
   .catch(err => console.error(err));
 
 app.use('/api/notes', noteRoutes);
+app.get('/hello', (req, res)=>{
+  res.status(200).json("Welcome to notes api")
+})
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
