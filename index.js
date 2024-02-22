@@ -17,16 +17,18 @@ app.use(cors({
 
 app.use(express.json());
 
-mongoose.connect(MONGODB_URI)
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.error(err));
+async function connectToMongoDB() {
+  try {
+      await mongoose.connect(MONGODB_URI);
+      console.log('MongoDB connected');
+  } catch (err) {
+      console.error(err);
+  }
+}
+
+connectToMongoDB();
 
 app.use('/api/notes', noteRoutes);
 
-app.get('/api/notes/all',getNotes)
-
-app.get('/hello', (req, res)=>{
-  res.status(200).json("Welcome to notes api")
-})
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
