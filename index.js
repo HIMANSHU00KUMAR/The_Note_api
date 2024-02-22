@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors'; // Import the cors middleware
 import dotenv from 'dotenv';
 import noteRoutes from './routes/notes.js';
-import { getNotes } from './controllers/notes.js';
+// import { getNotes } from './controllers/notes.js';
 dotenv.config();
 
 const app = express();
@@ -17,16 +17,21 @@ app.use(cors({
 
 app.use(express.json());
 
-mongoose.connect(MONGODB_URI)
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.error(err));
+async function connectToMongoDB() {
+  try {
+      await mongoose.connect(MONGODB_URI);
+      console.log('MongoDB connected');
+  } catch (err) {
+      console.error(err);
+  }
+}
+
+connectToMongoDB();
 
 app.use('/api/notes', noteRoutes);
 
-app.get('/api/notes/all',getNotes)
+// app.get('/api/notes/all',getNotes)
 
-app.get('/hello', (req, res)=>{
-  res.status(200).json("Welcome to notes api")
-})
+
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
