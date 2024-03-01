@@ -18,10 +18,10 @@ app.use(express.json());
 
 async function connectToMongoDB() {
   try {
-      await mongoose.connect(MONGODB_URI);
-      console.log('MongoDB connected');
+    await mongoose.connect(MONGODB_URI);
+    console.log('MongoDB connected');
   } catch (err) {
-      console.error(err);
+    console.error(err);
   }
 }
 
