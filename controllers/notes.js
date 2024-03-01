@@ -6,9 +6,9 @@ import Note from '../models/note.js';
 export const getNotes = async (req, res) => {
   try {
     console.log("Hiiii")
-    // const notes = await Note.find();
-    // res.status(200).json(notes);
-    res.status(200).json({"Hello":"Hii"})
+    const notes = await Note.find();
+    res.status(200).json(notes);
+    // res.status(200).json({"Hello":"Hii"})
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
