@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 import cors from 'cors'; // Import the cors middleware
 import dotenv from 'dotenv';
 import noteRoutes from './routes/notes.js';
-// import { getNotes } from './controllers/notes.js';
 dotenv.config();
 
 const app = express();
