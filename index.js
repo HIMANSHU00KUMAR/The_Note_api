@@ -12,6 +12,8 @@ import bodyParser from "body-parser";
 dotenv.config();
 
 const app = express();
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true }));
 connectDB();
 const PORT = process.env.PORT || 5000;
 
